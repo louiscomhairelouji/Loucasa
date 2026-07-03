@@ -213,7 +213,7 @@ section{padding:clamp(72px,10vw,128px) 0}
 .ig .lede{margin:0 auto 40px}
 .ig-frame{max-width:440px;margin:0 auto 18px;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
   box-shadow:0 26px 55px -30px rgba(16,48,62,.35)}
-.ig-frame iframe{display:block;width:100%;height:560px;border:0;background:#fff}
+.ig-frame iframe{display:block;width:100%;height:430px;border:0;background:#fff}
 .ig-note{font-size:13px;color:rgba(16,48,62,.6);margin-bottom:26px}
 
 /* ---------- contact band ---------- */
@@ -492,6 +492,13 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
 // year
 document.getElementById('y').textContent=new Date().getFullYear();
+
+// fit the Instagram embed to its content (removes the white gap below the grid)
+const igf=document.querySelector('.ig-frame iframe');
+const fitIg=()=>{if(igf)igf.style.height=Math.round(igf.clientWidth*0.667+150)+'px'};
+fitIg();
+addEventListener('resize',fitIg,{passive:true});
+if(igf)igf.addEventListener('load',fitIg);
 </script>
 </body>
 </html>
